@@ -1,27 +1,43 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+const navigate = useNavigate()
   const handleSubmit = async(e) => {
     e.preventDefault()
     // Handle login logic here
+    const newForm = new FormData()
+    newForm.append('username',username)
+    newForm.append('password',password)
     console.log('Login attempt with', { username, password });
     await fetch('http://10.10.5.156/cake4/rd_cake/dashboard/authenticate.json', {
         method: 'POST', // or 'PUT' for updating
-        body: JSON.stringify({username:username,password:password}) // Convert JavaScript object to JSON string
+        body: newForm // Convert JavaScript object to JSON string
       }).then(res=>{
-        console.log(res);
-        alert(res.data)
-        
+       return res.json()
+      }).then((data)=>{
+        if (data?.success ===false) {
+          console.log(data);
+          alert(data?.message)
+          throw new Error(data?.message)
+        }
+        else if (data?.success===true) {
+          
+          localStorage.setItem("token",data?.token)
+          setTimeout(()=>{
+            navigate('/vouchers')
+            
+          },1000)
+        }
       }).catch(err=>{
-        console.log(err);
-     alert(err)
+        console.log(err.message);
+        alert(err.message)
       })
   };
   useEffect(()=>{
-    // handleSubmit()
+  
   },[])
 
   return (

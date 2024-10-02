@@ -3,10 +3,14 @@ import {Outlet, useLocation, useNavigate} from 'react-router-dom'
 
 
 const AppLayOut = () => {
- 
- 
-
-    return (
+    const token = localStorage.getItem('token')
+//    const {pathname}= useLocation()
+//    const navigate = useNavigate()
+//    console.log(pathname);
+//    if (pathname==='login' && token!=null ) {
+//     navigate("/")
+//    } 
+   return (
         <div>
         
             <Outlet />

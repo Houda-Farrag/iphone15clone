@@ -1,6 +1,6 @@
 
 import React from 'react';
-
+import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AppLayOut from './Layout';
 import Home from './pages/Home';
