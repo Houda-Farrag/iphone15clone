@@ -1,21 +1,17 @@
-
 import React from 'react';
-import './App.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import AppLayOut from './Layout';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Vouchers from './pages/Voucher'
+import Home from './pages/Home/Home.jsx';
+
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <AppLayOut />,
+        element: <AppLayOut/>,
         children: [
-            { index: true, element: <Home /> },
-            { path: '/login', element: <Login /> },
-            { path: '/home', element: <Home /> },
-            {path:'/vouchers',element:<Vouchers/>},
-            { path: '*', element:<>not found </> }
+            {index: true, element: <Home/>},
+            {path: '/home', element: <Home/>},
+            {path: '*', element: <>not found </>}
         ],
     },
 
@@ -26,9 +22,7 @@ function App() {
 
 
     return (
-       
-                <RouterProvider router={router} />
-    
+        <RouterProvider router={router}/>
     );
 }
 

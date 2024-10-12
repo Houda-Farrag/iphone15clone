@@ -1,22 +1,16 @@
-import React, {useEffect} from 'react'
-import {Outlet, useLocation, useNavigate} from 'react-router-dom'
-
+import React from 'react'
+import {Outlet} from 'react-router-dom'
+import Header from "./components/Header/Header.jsx";
 
 const AppLayOut = () => {
-    const token = localStorage.getItem('token')
-//    const {pathname}= useLocation()
-//    const navigate = useNavigate()
-//    console.log(pathname);
-//    if (pathname==='login' && token!=null ) {
-//     navigate("/")
-//    } 
-   return (
-        <div>
-        
-            <Outlet />
+    return <>
+        <main className='bg-black'>
+           <Header/> 
+            <Outlet/>
+       </main>
 
-        </div>
-    )
+
+   </>
 }
 
 export default AppLayOut
